@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    ports:
+      - 15672:15672  #Management
+      - 5672:5672    #AMQP
+    volumes:
+      - mq_data:/var/lib/rabbitmq
+
+volumes:
+  mq_data:
