@@ -38,7 +38,10 @@ namespace Repro.Consumer
             });
 
             // Starts a background service that interacts with the MQ
-            serviceCollection.AddMassTransitHostedService(true);
+            serviceCollection.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+            });
         }
 
         private static string GetRabbitMqHostUri(string username, string password, string hostAddress, string virtualHost)

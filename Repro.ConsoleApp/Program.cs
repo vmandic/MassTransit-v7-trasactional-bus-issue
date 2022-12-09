@@ -39,7 +39,10 @@ namespace Repro.ConsoleApp
             });
 
             // Starts a background service that interacts with the MQ
-            serviceCollection.AddMassTransitHostedService(true);
+            serviceCollection.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+            });
 
             Console.WriteLine("MassTransit + RabbitMq configured");
         }
